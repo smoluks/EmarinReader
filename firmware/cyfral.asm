@@ -1,24 +1,23 @@
 cyfral_read:
 ;
-;даем ключу время накачаться
+;пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 rcall delay480
-;-----проверка на КЗ-----
-sts TCNT2, r2
-sts TIFR0, r8
+;-----пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ-----
+sts TCNT2, CONST_0
 ;
 cr2:
 sbic pind, 4
 rjmp cr1
-lds r16, TIFR0
+lds r16, TIFR
 sbrs r16, 6
 rjmp cr2
- ;КЗ 
+ ;пїЅпїЅ 
  ldi r16, 2
  ret
 ;
 cr1:
-clr r18;обнуляем число чтений ключа
-;-----ожидание стартовой декады (0001)-----
+clr r18;пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+;-----пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (0001)-----
 cr8:
 rcall cyfral_readbit
 brts cr3
@@ -32,8 +31,8 @@ brcs cr1
 rcall cyfral_readbit
 brts cr3
 brcc cr1
-;-----чтение данных-----
-;1 байт
+;-----пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-----
+;1 пїЅпїЅпїЅпїЅ
 rcall cyfral_readbyte
 brts cr3
 lds r17, CYFRALBuffer
@@ -42,7 +41,7 @@ breq cr1comp
  sts CYFRALBuffer, r16
  clr r18
 cr1comp:
-;2 байт
+;2 пїЅпїЅпїЅпїЅ
 rcall cyfral_readbyte
 brts cr3
 lds r17, CYFRALBuffer+1
@@ -51,7 +50,7 @@ breq cr2comp
  sts CYFRALBuffer+1, r16
  clr r18
 cr2comp:
-;3 байт
+;3 пїЅпїЅпїЅпїЅ
 rcall cyfral_readbyte
 brts cr3
 lds r17, CYFRALBuffer+2
@@ -60,7 +59,7 @@ breq cr3comp
  sts CYFRALBuffer+2, r16
  clr r18
 cr3comp:
-;4 байт
+;4 пїЅпїЅпїЅпїЅ
 rcall cyfral_readbyte
 brts cr3
 lds r17, CYFRALBuffer+3
@@ -103,28 +102,30 @@ cyfral_readbit:
 push r16
 ;
 clt
-sts TCNT2, r2
-sts TIFR0, r8
-;---ожидание нуля---
+sts TCNT2, CONST_0
+ldi r16, 0b01000000
+out TIFR, r16
+;---пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ---
 cr4:
 sbis pind, 4
 rjmp cr5
-lds r16, TIFR0
+lds r16, TIFR
 sbrs r16, 6
 rjmp cr4
  ;timeout
  set
  pop r16
  ret
-;----замер времени нуля---
+;----пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ---
 cr5:
-sts TCNT2, r2
-sts TIFR0, r8
-;ожидание 1
+sts TCNT2, CONST_0
+ldi r16, 0b01000000
+out TIFR, r16
+;пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1
 cr6:
 sbic pind, 4
 rjmp cr7
-lds r16, TIFR0
+lds r16, TIFR
 sbrs r16, 6
 rjmp cr6
  ;timeout 

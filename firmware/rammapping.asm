@@ -1,25 +1,88 @@
+;----------------------------RAM------------------------------------
 ;onewire
 #define ONEWIREbuffer 0x60
 #define ONEWIREbuffer_size 8
 #define onewirecrc ONEWIREbuffer+ONEWIREbuffer_size
+
 ;cyfral
 #define CYFRALBuffer onewirecrc+1
 #define CYFRALBuffer_size 4
+
 ;emarin
-#define RFIDBuffer CYFRALBuffer+CYFRALBuffer_size
-#define RFIDBuffer_size 5
-#define RAM_BitCounter RFIDBuffer+RFIDBuffer_size
-#define RAM_GroupNumber RAM_BitCounter+1
-#define RAM_BitMask RAM_BitCounter+2
-#define RAM_ReceivedByte RAM_BitCounter+3
-#define RAM_ParityVertical RAM_BitCounter+4
-#define RAM_ParityHorizontal RAM_BitCounter+5
-#define RAM_RFIDPass0 RAM_BitCounter+6
-#define RAM_RFIDPass1 RAM_BitCounter+7
-#define RAM_RFIDPass2 RAM_BitCounter+8
-#define RAM_RFIDPass3 RAM_BitCounter+9
-#define RAM_RFIDOP RAM_BitCounter+10
-;#define RFIDOP_READ 0 по умолчанию
-#define RFIDOP_WRITE5577 1
+#define RAW_RFID_READ_BUFFER CYFRALBuffer+CYFRALBuffer_size
+#define RAW_RFID_READ_BUFFER_SIZE 6
+#define RFID_READ_BYTENUMBER RAW_RFID_READ_BUFFER + RAW_RFID_READ_BUFFER_SIZE
+
 ;uart
-#define uart_txbuffer 0x100
+#define UART_RX_STATE RFID_READ_BYTENUMBER + 1
+#define UART_RX_STATE_WAIT_START 0
+#define UART_RX_STATE_WAIT_LENGTH 1 
+#define UART_RX_STATE_WAIT_DATA 2
+#define UART_RX_STATE_WAIT_CRC 3
+
+#define UART_RX_BUFFER UART_RX_STATE + 1
+#define UART_RX_BUFFER_SIZE 7
+
+#define UART_RX_COUNT UART_RX_BUFFER + UART_RX_BUFFER_SIZE
+#define UART_RX_COUNT_TEMP UART_RX_COUNT + 1
+#define UART_RX_HANDLE UART_RX_COUNT_TEMP + 1
+#define UART_RX_CRC UART_RX_HANDLE + 1
+
+#define UART_TX_COUNT UART_RX_CRC + 1
+
+#define UART_TX_STATE UART_TX_COUNT + 1
+#define UART_TX_STATE_SEND_LENGTH 0 
+#define UART_TX_STATE_SEND_DATA 1 
+#define UART_TX_STATE_SEND_CRC 2 
+
+#define UART_TX_HANDLE UART_TX_STATE + 1
+#define UART_TX_CRC UART_TX_HANDLE + 1
+#define UART_TX_BUFFER UART_TX_CRC + 1
+
+;----------------------------CONST------------------------------------
+#define CRC_POLYNOM 0x8C
+#define CONST_0 r2
+#define CONST_CRC_POLYNOM r3
+clr r16
+ldi r17, CRC_POLYNOM
+movw r2, r16
+
+#define RFID_PERIOD_LENGTH 63 ;one-bit time in cycles - F_CPU/64/2000
+#define TCNT0_PROBE_TIME 210 ;probe time 3/4 - 0x100-(RFID_PERIOD_LENGTH*3/4)
+#define TCNT0_TIMEOUT_TIME 224 ;timeout time 1/4 +/- 1/4 - 0x100-(RFID_PERIOD_LENGTH*2/4)
+#define CONST_TCNT0_PROBE_TIME r4
+#define CONST_TCNT0_TIMEOUT_TIME r5
+ldi r16, TCNT0_PROBE_TIME
+ldi r17, TCNT0_TIMEOUT_TIME
+movw r4, r16
+
+#define DDRB_COILOFF 0b00000000
+#define CONST_DDRB_COILOFF r6
+#define DDRB_COILON 0b00000110
+#define CONST_DDRB_COILON r7
+ldi r16, DDRB_COILOFF
+ldi r17, DDRB_COILON
+movw r6, r16
+
+#define CONST_UART_RX_BUFFER r8
+#define CONST_UART_TX_BUFFER r9
+ldi r16, UART_RX_BUFFER
+ldi r17, UART_TX_BUFFER
+movw r8, r16
+
+#define CONST_START_TOKEN r10
+#define CONST_START_TOKEN_CRC r11
+ldi r16, 0xAB
+ldi r17, 0x8F
+movw r10, r16
+
+;#define TOV2_MASK 0b01000000
+;#define OCF1A_MASK 0b00010000
+#define CYFRAL_THRESHOLD 128
+
+;----------------------------REGS------------------------------------
+#define RFIDFLAGS r24
+#define RFIDFLAGS_LINE_ONE_VALUE 0
+#define RFIDFLAGS_DATA_READY 1
+#define RFIDFLAGS_TIMER0_OVERFLOW 2
+#define RFIDFLAGS_READ_COMMAND 3

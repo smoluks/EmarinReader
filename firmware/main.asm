@@ -1,215 +1,182 @@
- .ORG 0x00 rjmp RESET ; Reset Handler
+.ORG 0x00 rjmp RESET ; Reset Handler
 ;.ORG 0x01 rjmp EXT_INT0 ; IRQ0 Handler
 ;.ORG 0x02 rjmp EXT_INT1 ; IRQ1 Handler
-;.ORG 0x03 rjmp EXT_INT0 ; PCINT0 Handler
-;.ORG 0x04 rjmp EXT_INT1 ; PCINT1 Handler
-;.ORG 0x05 rjmp EXT_INT0 ; PCINT2 Handler
-;.ORG 0x06 rjmp EXT_INT1 ; WDT Handler
-;.ORG 0x07 rjmp TIM2_COMPA ; Timer2 Compare Handler
-;.ORG 0x08 rjmp TIM2_COMPB ; Timer2 Compare Handler
-;.ORG 0x09 rjmp TIM2_OVF ; Timer2 Overflow Handler
-;.ORG 0x0a rjmp TIM1_CAPT ; Timer1 Capture Handler
-;.ORG 0x0B rjmp TIM1_COMPA ; Timer1 CompareA Handler
-;.ORG 0x0C rjmp TIM1_COMPB ; Timer1 CompareB Handler
-;.ORG 0x0D rjmp TIM1_OVF ; Timer1 Overflow Handler
-;.ORG 0x0E rjmp TIM0_COMPA ; Timer1 CompareA Handler
-;.ORG 0x0F rjmp TIM0_COMPB ; Timer1 CompareB Handler
-.ORG 0x10 rjmp TIM0_OVF ; Timer0 Overflow Handler
-;.ORG 0x11 rjmp SPI_STC ; SPI Transfer Complete Handler
-;.ORG 0x12 rjmp USART_RXC ; USART RX Complete Handler
-;.ORG 0x13 rjmp USART_UDRE ; UDR Empty Handler
-;.ORG 0x14 rjmp USART_TXC ; USART TX Complete Handler
-;.ORG 0x15 rjmp ADC ; ADC Conversion Complete Handler
-;.ORG 0x16 rjmp EE_RDY ; EEPROM Ready Handler
-.ORG 0x17 rjmp ANA_COMP ; Analog Comparator Handler
-;.ORG 0x18 rjmp TWSI ; Two-wire Serial Interface Handler
-;.ORG 0x19 rjmp SPM_RDY ; Store Program Memory Ready Handler
-
-#define CRC_POLYNOM 0x8C
-#define TOV2_MASK 0b01000000
-#define OCF1A_MASK 0b00010000
-#define CYFRAL_THRESHOLD 128
-#define DDRB_COILOFF 0b00000000
-#define DDRB_COILON 0b00000110
-
-#define RFIDFlags r24
-#define LINE_ONE_VALUE 0
-#define DATA_ENABLED 1
-#define TIMER0_OVERFLOW 7
-
-#include "rammapping.asm"
-#include "TIMER0_OVF.asm"
-#include "ANA_COMP.asm"
+;.ORG 0x03 rjmp TIM2_COMP ; Timer2 Compare Handler
+;.ORG 0x04 rjmp TIM2_OVF ; Timer2 Overflow Handler
+;.ORG 0x05 rjmp TIM1_CAPT ; Timer1 Capture Handler
+;.ORG 0x06 rjmp TIM1_COMPA ; Timer1 CompareA Handler
+;.ORG 0x07 rjmp TIM1_COMPB ; Timer1 CompareB Handler
+;.ORG 0x08 rjmp TIM1_OVF ; Timer1 Overflow Handler
+.ORG 0x09 rjmp TIM0_OVF ; Timer0 Overflow Handler
+;.ORG 0x0a rjmp SPI_STC ; SPI Transfer Complete Handler
+.ORG 0x0b rjmp USART_RXC ; USART RX Complete Handler
+.ORG 0x0c rjmp USART_UDRE ; UDR Empty Handler
+;.ORG 0x0d rjmp USART_TXC ; USART TX Complete Handler
+;.ORG 0x0e rjmp ADC ; ADC Conversion Complete Handler
+;.ORG 0x0f rjmp EE_RDY ; EEPROM Ready Handler
+.ORG 0x10 rjmp ANA_COMP ; Analog Comparator Handler
+;.ORG 0x11 rjmp TWSI ; Two-wire Serial Interface Handler
+;.ORG 0x12 rjmp SPM_RDY ; Store Program Memory Ready Handler
 
 RESET:
-;стек
+;stack
 ldi r16,high(RAMEND)
 out SPH,r16
 ldi r16,low(RAMEND)
 out SPL,r16
-;константы
-clr r16
-ser r17
-movw r2, r16
-ldi r16, 1
-ldi r17, TCNT0VALUE
-movw r4, r16
-ldi r16, CRC_POLYNOM
-ldi r17, 0b00000010
-movw r6, r16
-ldi r16, TOV2_MASK
-ldi r17, OCF1A_MASK
-movw r8, r16
-ldi r16, DDRB_COILOFF
-ldi r17, DDRB_COILON
-movw r10, r16
-;порты
-ldi r16, 0b00000000;
+;const
+#include "rammapping.asm"
+;GPIO
+ldi r16, 0b00000110;
 out ddrb, r16
-ldi r16, 0b00000010;
+ldi r16, 0b00000110;
 out portb, r16
-ldi r16, 0b00000100;
+ldi r16, 0b00111001;
 out ddrc, r16
-ldi r16, 0b00000000;
+ldi r16, 0b00111001;
 out portc, r16
-ldi r16, 0b00011010;
+ldi r16, 0b00001010;
 out ddrd, r16
-ldi r16, 0b00010111;
+ldi r16, 0b00000011;
 out portd, r16
-;T0 - 125 KHz data strobe + 2khx
-sts TCCR0A, r2
+;----- T0 - 125 KHz data strobe for manchester-----
 ldi r16, 0b00000011 ;/64
-sts TCCR0B, r16
-sts TCNT0, r2
-;ldi r16, 0b00000001
-;sts TIMSK0, r16 
-;T1 250kHz / toggle carrier generator
-;ldi r16, 0b10000000
-;sts TCCR1C, r16
-sts TCNT1H, r2
-sts TCNT1L, r2
-sts OCR1AH, r2
-ldi r16, 7
-sts OCR1AL, r16
-sts OCR1BH, r2
-ldi r16, 7
-sts OCR1BL, r16
+out TCCR0, r16
+out TCNT0, CONST_0
+;----- T1 250kHz / toggle carrier generator -----
+out TCNT1H, CONST_0
+out TCNT1L, CONST_0
+;
+out OCR1AH, CONST_0
+ldi r16, 3
+out OCR1AL, r16
+;
+out OCR1BH, CONST_0
+ldi r16, 3
+out OCR1BL, r16
+;
 ldi r16, 0b01010000 ;Toggle OC1A, OC1B on Compare Match
-sts TCCR1A, r16
+out TCCR1A, r16
 ldi r16, 0b00001010 ;clk/8, CTC
-sts TCCR1B, r16
-ldi r16, 0b10000000 
-sts TCCR1C, r16
-;T2 - 1us systick
-sts TCCR2A, r2
+out TCCR1B, r16
+;----- T2 - 1us systick -----
 ldi r16, 0b00000010
-sts TCCR2B, r16 ;start t2
-;UART 19200 ODD
-ldi r16, 0b0000000 
-sts UCSR0A, r16
-ldi r16, 0b00011000
-sts UCSR0B, r16
+out TCCR2, r16 ;start t2
+;----- UART 19200 ODD -----
+;ldi r16, 0b00000010
+out UCSRA, CONST_0
+ldi r16, 0b10011000
+out UCSRB, r16
 ldi r16, 0b10110110
-sts UCSR0C, r16
-sts UBRR0H, r2
+out UCSRC, r16
+out UBRRH, CONST_0
 ldi r16, 25
-sts UBRR0L, r16
-ldi r16, 0xAB
-sts UDR0, r16
-;COMP
-;sts ADCSRB, r2
-;ldi r16, 0b00001000
-;sts ACSR, r16
-;ldi r16, 0b00000011
-;sts DIDR1, r16
+out UBRRL, r16
+;----- Comp -----
+ldi r16, 0b00010000
+out ACSR, r16
+out SFIOR, CONST_0
 ;
 rcall rfid_init
+rcall uart_init
 ;
-out ddrb, r11 ;coil on
 rcall delayhalfsec
-rcall delayhalfsec
-rcall delayhalfsec
-rcall delayhalfsec
+cbi portc, 4
+cbi portc, 3
+cbi portc, 0
 ;
-;sei
+sei
 ;
 l1:
-lds r16, ACSR
-sbrs r16, 5
-rjmp a1
-sbi portd, 4
-rjmp a2
-a1:
-cbi portd, 4
-a2:
-rjmp l1
-
 ;-----cyfral-----
-rcall cyfral_read
-cpi r16, 2
-breq l1
-cpi r16, 1
-brne l4
+;rcall cyfral_read
+;cpi r16, 2
+;breq l1
+;cpi r16, 1
+;brne l4
  ;
- rcall uart_sendcyfral
+ ;rcall uart_sendcyfral
  ;beep
- rcall beep
+ ;rcall beep
  ;
- rcall delayhalfsec
- rcall delayhalfsec
- rjmp l1
+ ;rcall delayhalfsec
+ ;rcall delayhalfsec
+ ;rjmp l1
 ;-----1wire-----
-l4:
-rcall onewire_readserialnumber
-cpi r16, 1
-brne l3
+;l4:
+;rcall onewire_readserialnumber
+;cpi r16, 1
+;brne l3
  ;--1wire present-- 
- rcall uart_send1wire
+ ;rcall uart_send1wire
  ;beep
- rcall beep 
+ ;rcall beep 
  ;
- rcall delayhalfsec
- rcall delayhalfsec
- rjmp l1
-;-----rfid-----
+ ;rcall delayhalfsec
+ ;rcall delayhalfsec
+ ;rjmp l1
+;-----rfid wrire-----
 l3:
-lds r16, RAM_RFIDOP
-cpi r16, RFIDOP_WRITE5577
-brne l1_1
+;lds r16, RFID_COMMANDS
+;cpi r16, RFID_COMMANDS_WRITE5577
+;brne l4
   ;--write-- 
   ;cli
   ;
-  rcall rf5577_write
+  ;rcall rf5577_write
   ;
-  ldi r16, 0xBD
-  sts UDR0, r16
+  ;ldi r16, 0xBD
+  ;sts UDR0, r16
   ;
-  sts RAM_RFIDOP, r2
-  cbr RFIDFlags, 1 << DATA_ENABLED
+  ;sts RFID_COMMANDS, CONST_0
+  ;cbr RFIDFLAGS, 1 << RFIDFLAGS_READ_ENABLE
   ;beep
-  rcall beep
+  ;rcall beep
   ;
-  rcall delayhalfsec
-  rcall delayhalfsec
+  ;rcall delayhalfsec
+  ;rcall delayhalfsec
   ;
   ;sei
-  rjmp l1
-;--read--
-l1_1: 
-sbrs RFIDFlags, DATA_ENABLED;код RFID считан
+  ;rjmp l1
+;--rfid read--
+sbrc RFIDFLAGS, RFIDFLAGS_READ_COMMAND
+rcall read_rfid
+;--rfid send--
+sbrc RFIDFLAGS, RFIDFLAGS_DATA_READY
+rcall send_rfid
+;
+rcall strobe
 rjmp l1
- ;----rfid present----
-  rcall uart_sendemarin
-  cbr RFIDFlags, 1 << DATA_ENABLED
-  ;beep
-  rcall beep
-  ;
-  rcall delayhalfsec
-  rcall delayhalfsec
-  ;
-  rjmp l1
 
- 
+read_rfid:
+cbr RFIDFLAGS, 1 << RFIDFLAGS_READ_COMMAND
+sbi portc, 4
+;
+ldi r16, 0b00011000
+out ACSR, r16
+ldi r16, 0b00000001
+out TIMSK, r16
+out DDRB, CONST_DDRB_COILON
+ret
+
+send_rfid:
+cbr RFIDFLAGS, 1 << RFIDFLAGS_DATA_READY
+cbi portc, 4
+;
+rcall uart_sendemarin
+;rcall beep
+ret
+
+strobe:
+in r16, ACSR
+sbrs r16, 5
+rjmp strobe1
+ cbi portc, 3
+ ret
+strobe1:
+ sbi portc, 3
+ ret
+
 beep:
 sbi portd, 3
 rcall delay200ms 
@@ -262,9 +229,8 @@ pop r17
 pop r18
 ret
 
-#include "1WIRE.asm"
-#include "UART.asm"
-#include "RFID.asm"
-#include "RFID_5577.asm"
-#include "cyfral.asm"
-
+#include "rfid_read.asm"
+;#include "1wire.asm"
+#include "uart.asm"
+;#include "RFID_5577.asm"
+;#include "cyfral.asm"

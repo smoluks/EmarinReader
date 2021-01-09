@@ -8,7 +8,7 @@ or2:
 ;
 ldi r26, low(ONEWIREbuffer)
 ldi r27, high(ONEWIREbuffer)
-sts onewirecrc, r2
+sts onewirecrc, CONST_0
 ;
 ldi r16, 0x33
 rcall writebyte
@@ -61,15 +61,15 @@ push r18
 push r19
 ;
 lds r18, onewirecrc
-ldi r17, 8 ;количество бит
-;--обработка одного байта
+ldi r17, 8 ;РєРѕР»РёС‡РµСЃС‚РІРѕ Р±РёС‚
+;--РѕР±СЂР°Р±РѕС‚РєР° РѕРґРЅРѕРіРѕ Р±Р°Р№С‚Р°
 cc4:
  mov r19, r16
  eor r19, r18
  lsr r18
  sbrs r19, 0
  rjmp cc2  
-  eor r18, r6
+  eor r18, CONST_CRC_POLYNOM
  cc2:
  lsr r16
  dec r17

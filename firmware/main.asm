@@ -63,15 +63,17 @@ out TCCR1B, r16
 ldi r16, 0b00000010
 out TCCR2, r16 ;start t2
 ;----- UART 19200 ODD -----
-;ldi r16, 0b00000010
-out UCSRA, CONST_0
+ldi r16, 0b00000010
+out UCSRA, r16
 ldi r16, 0b10011000
 out UCSRB, r16
 ldi r16, 0b10110110
 out UCSRC, r16
 out UBRRH, CONST_0
-ldi r16, 25
-out UBRRL, r16
+;ldi r16, 25
+out UBRRL, CONST_0
+ldi r16, END_RAM
+out UDR, r16
 ;----- Comp -----
 ldi r16, 0b00010000
 out ACSR, r16
@@ -154,8 +156,6 @@ sbi portc, 4
 ;
 ldi r16, 0b00011000
 out ACSR, r16
-ldi r16, 0b00000001
-out TIMSK, r16
 out DDRB, CONST_DDRB_COILON
 ret
 
@@ -164,7 +164,7 @@ cbr RFIDFLAGS, 1 << RFIDFLAGS_DATA_READY
 cbi portc, 4
 ;
 rcall uart_sendemarin
-;rcall beep
+rcall beep
 ret
 
 strobe:

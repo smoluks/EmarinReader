@@ -83,10 +83,17 @@ pop r16
 reti
 
 process_packet:
+lds r16, UART_RX_COUNT
+tst r16
+brne pp0
+ rcall send_empty
+ ret
+pp0:
 lds r16, UART_RX_BUFFER
 cpi r16, 0x20
 brne pp1
  sbr RFIDFLAGS, 1 << RFIDFLAGS_READ_COMMAND
+ ret
 pp1:
 ret
 
@@ -107,6 +114,10 @@ brne ud1
  rcall tx_crc
  ;
  inc r17
+ tst r16
+ brne ud1_1
+  inc r17
+ ud1_1:
  sts UART_TX_STATE, r17
  ;
  rjmp ud_exit
@@ -148,6 +159,13 @@ pop r17
 pop r16
 reti
 
+send_empty:
+sts UART_TX_COUNT, CONST_0
+out UDR, CONST_START_TOKEN
+sbi UCSRB, 5
+;
+ret
+
 ;uart_send1wire:
 ;ldi r26, low(UART_TXBUFFER)
 ;ldi r27, high(UART_TXBUFFER)
@@ -182,8 +200,12 @@ lds r16, RAW_RFID_READ_BUFFER+4
 sts UART_TX_BUFFER+4, r16
 lds r16, RAW_RFID_READ_BUFFER+5
 sts UART_TX_BUFFER+5, r16
+lds r16, RAW_RFID_READ_BUFFER+6
+sts UART_TX_BUFFER+6, r16
+lds r16, RAW_RFID_READ_BUFFER+7
+sts UART_TX_BUFFER+7, r16
 ;
-ldi r16, 6
+ldi r16, 8
 sts UART_TX_COUNT, r16
 out UDR, CONST_START_TOKEN
 sbi UCSRB, 5

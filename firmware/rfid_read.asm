@@ -86,9 +86,12 @@ ac2:
  rjmp ac_exit
 ; 
 ac1:
-clc
-sbrc RFIDFLAGS, RFIDFLAGS_LINE_ONE_VALUE
 sec
+sbrc RFIDFLAGS, RFIDFLAGS_LINE_ONE_VALUE
+rjmp ac1_1
+ clc
+ cpi r17, 9
+ brlo ac2  
 ac1_1:
 ;
 ror r27

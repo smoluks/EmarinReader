@@ -126,6 +126,8 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -146,7 +148,6 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Enabled = false;
             this.tabControl1.Location = new System.Drawing.Point(259, 9);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
@@ -434,6 +435,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.tbR0);
             this.tabPage4.Controls.Add(this.tbD04);
             this.tabPage4.Controls.Add(this.tbD03);
@@ -509,111 +512,111 @@
             // 
             // tbR0
             // 
-            this.tbR0.Location = new System.Drawing.Point(289, 402);
+            this.tbR0.Location = new System.Drawing.Point(288, 399);
             this.tbR0.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR0.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR0.Name = "tbR0";
             this.tbR0.ReadOnly = true;
-            this.tbR0.Size = new System.Drawing.Size(32, 31);
+            this.tbR0.Size = new System.Drawing.Size(32, 32);
             this.tbR0.TabIndex = 64;
             this.tbR0.Text = "0";
             // 
             // tbD04
             // 
-            this.tbD04.Location = new System.Drawing.Point(240, 402);
+            this.tbD04.Location = new System.Drawing.Point(239, 399);
             this.tbD04.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD04.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD04.Name = "tbD04";
             this.tbD04.ReadOnly = true;
-            this.tbD04.Size = new System.Drawing.Size(32, 31);
+            this.tbD04.Size = new System.Drawing.Size(32, 32);
             this.tbD04.TabIndex = 63;
             this.tbD04.Text = "0";
             // 
             // tbD03
             // 
-            this.tbD03.Location = new System.Drawing.Point(206, 402);
+            this.tbD03.Location = new System.Drawing.Point(205, 399);
             this.tbD03.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD03.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD03.Name = "tbD03";
             this.tbD03.ReadOnly = true;
-            this.tbD03.Size = new System.Drawing.Size(32, 31);
+            this.tbD03.Size = new System.Drawing.Size(32, 32);
             this.tbD03.TabIndex = 62;
             this.tbD03.Text = "0";
             // 
             // tbD02
             // 
-            this.tbD02.Location = new System.Drawing.Point(172, 402);
+            this.tbD02.Location = new System.Drawing.Point(171, 399);
             this.tbD02.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD02.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD02.Name = "tbD02";
             this.tbD02.ReadOnly = true;
-            this.tbD02.Size = new System.Drawing.Size(32, 31);
+            this.tbD02.Size = new System.Drawing.Size(32, 32);
             this.tbD02.TabIndex = 61;
             this.tbD02.Text = "0";
             // 
             // tbD01
             // 
-            this.tbD01.Location = new System.Drawing.Point(138, 402);
+            this.tbD01.Location = new System.Drawing.Point(137, 399);
             this.tbD01.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD01.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD01.Name = "tbD01";
             this.tbD01.ReadOnly = true;
-            this.tbD01.Size = new System.Drawing.Size(32, 31);
+            this.tbD01.Size = new System.Drawing.Size(32, 32);
             this.tbD01.TabIndex = 60;
             this.tbD01.Text = "0";
             // 
             // tbR9
             // 
-            this.tbR9.Location = new System.Drawing.Point(289, 365);
+            this.tbR9.Location = new System.Drawing.Point(288, 362);
             this.tbR9.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR9.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR9.Name = "tbR9";
             this.tbR9.ReadOnly = true;
-            this.tbR9.Size = new System.Drawing.Size(32, 31);
+            this.tbR9.Size = new System.Drawing.Size(32, 32);
             this.tbR9.TabIndex = 59;
             this.tbR9.Text = "0";
             // 
             // tbD94
             // 
-            this.tbD94.Location = new System.Drawing.Point(240, 365);
+            this.tbD94.Location = new System.Drawing.Point(239, 362);
             this.tbD94.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD94.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD94.Name = "tbD94";
             this.tbD94.ReadOnly = true;
-            this.tbD94.Size = new System.Drawing.Size(32, 31);
+            this.tbD94.Size = new System.Drawing.Size(32, 32);
             this.tbD94.TabIndex = 58;
             this.tbD94.Text = "0";
             // 
             // tbD93
             // 
-            this.tbD93.Location = new System.Drawing.Point(206, 365);
+            this.tbD93.Location = new System.Drawing.Point(205, 362);
             this.tbD93.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD93.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD93.Name = "tbD93";
             this.tbD93.ReadOnly = true;
-            this.tbD93.Size = new System.Drawing.Size(32, 31);
+            this.tbD93.Size = new System.Drawing.Size(32, 32);
             this.tbD93.TabIndex = 57;
             this.tbD93.Text = "0";
             // 
             // tbD92
             // 
-            this.tbD92.Location = new System.Drawing.Point(172, 365);
+            this.tbD92.Location = new System.Drawing.Point(171, 362);
             this.tbD92.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD92.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD92.Name = "tbD92";
             this.tbD92.ReadOnly = true;
-            this.tbD92.Size = new System.Drawing.Size(32, 31);
+            this.tbD92.Size = new System.Drawing.Size(32, 32);
             this.tbD92.TabIndex = 56;
             this.tbD92.Text = "0";
             // 
             // tbD91
             // 
-            this.tbD91.Location = new System.Drawing.Point(138, 365);
+            this.tbD91.Location = new System.Drawing.Point(137, 362);
             this.tbD91.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD91.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD91.Name = "tbD91";
             this.tbD91.ReadOnly = true;
-            this.tbD91.Size = new System.Drawing.Size(32, 31);
+            this.tbD91.Size = new System.Drawing.Size(32, 32);
             this.tbD91.TabIndex = 55;
             this.tbD91.Text = "0";
             // 
@@ -621,7 +624,7 @@
             // 
             this.btnRead.Location = new System.Drawing.Point(17, 531);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(300, 36);
+            this.btnRead.Size = new System.Drawing.Size(300, 44);
             this.btnRead.TabIndex = 54;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
@@ -629,496 +632,496 @@
             // 
             // tbP1
             // 
-            this.tbP1.Location = new System.Drawing.Point(289, 464);
+            this.tbP1.Location = new System.Drawing.Point(288, 461);
             this.tbP1.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbP1.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbP1.Name = "tbP1";
             this.tbP1.ReadOnly = true;
-            this.tbP1.Size = new System.Drawing.Size(32, 31);
+            this.tbP1.Size = new System.Drawing.Size(32, 32);
             this.tbP1.TabIndex = 53;
             this.tbP1.Text = "0";
             // 
             // tbC4
             // 
-            this.tbC4.Location = new System.Drawing.Point(240, 464);
+            this.tbC4.Location = new System.Drawing.Point(239, 461);
             this.tbC4.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbC4.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC4.Name = "tbC4";
             this.tbC4.ReadOnly = true;
-            this.tbC4.Size = new System.Drawing.Size(32, 31);
+            this.tbC4.Size = new System.Drawing.Size(32, 32);
             this.tbC4.TabIndex = 52;
             this.tbC4.Text = "0";
             // 
             // tbC3
             // 
-            this.tbC3.Location = new System.Drawing.Point(206, 464);
+            this.tbC3.Location = new System.Drawing.Point(205, 461);
             this.tbC3.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbC3.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC3.Name = "tbC3";
             this.tbC3.ReadOnly = true;
-            this.tbC3.Size = new System.Drawing.Size(32, 31);
+            this.tbC3.Size = new System.Drawing.Size(32, 32);
             this.tbC3.TabIndex = 51;
             this.tbC3.Text = "0";
             // 
             // tbC2
             // 
-            this.tbC2.Location = new System.Drawing.Point(172, 464);
+            this.tbC2.Location = new System.Drawing.Point(171, 461);
             this.tbC2.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbC2.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC2.Name = "tbC2";
             this.tbC2.ReadOnly = true;
-            this.tbC2.Size = new System.Drawing.Size(32, 31);
+            this.tbC2.Size = new System.Drawing.Size(32, 32);
             this.tbC2.TabIndex = 50;
             this.tbC2.Text = "0";
             // 
             // tbC1
             // 
-            this.tbC1.Location = new System.Drawing.Point(138, 464);
+            this.tbC1.Location = new System.Drawing.Point(137, 461);
             this.tbC1.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbC1.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC1.Name = "tbC1";
             this.tbC1.ReadOnly = true;
-            this.tbC1.Size = new System.Drawing.Size(32, 31);
+            this.tbC1.Size = new System.Drawing.Size(32, 32);
             this.tbC1.TabIndex = 49;
             this.tbC1.Text = "0";
             // 
             // tbR8
             // 
-            this.tbR8.Location = new System.Drawing.Point(289, 328);
+            this.tbR8.Location = new System.Drawing.Point(288, 325);
             this.tbR8.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR8.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR8.Name = "tbR8";
             this.tbR8.ReadOnly = true;
-            this.tbR8.Size = new System.Drawing.Size(32, 31);
+            this.tbR8.Size = new System.Drawing.Size(32, 32);
             this.tbR8.TabIndex = 48;
             this.tbR8.Text = "0";
             // 
             // tbD84
             // 
-            this.tbD84.Location = new System.Drawing.Point(240, 328);
+            this.tbD84.Location = new System.Drawing.Point(239, 325);
             this.tbD84.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD84.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD84.Name = "tbD84";
             this.tbD84.ReadOnly = true;
-            this.tbD84.Size = new System.Drawing.Size(32, 31);
+            this.tbD84.Size = new System.Drawing.Size(32, 32);
             this.tbD84.TabIndex = 47;
             this.tbD84.Text = "0";
             // 
             // tbD83
             // 
-            this.tbD83.Location = new System.Drawing.Point(206, 328);
+            this.tbD83.Location = new System.Drawing.Point(205, 325);
             this.tbD83.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD83.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD83.Name = "tbD83";
             this.tbD83.ReadOnly = true;
-            this.tbD83.Size = new System.Drawing.Size(32, 31);
+            this.tbD83.Size = new System.Drawing.Size(32, 32);
             this.tbD83.TabIndex = 46;
             this.tbD83.Text = "0";
             // 
             // tbD82
             // 
-            this.tbD82.Location = new System.Drawing.Point(172, 328);
+            this.tbD82.Location = new System.Drawing.Point(171, 325);
             this.tbD82.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD82.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD82.Name = "tbD82";
             this.tbD82.ReadOnly = true;
-            this.tbD82.Size = new System.Drawing.Size(32, 31);
+            this.tbD82.Size = new System.Drawing.Size(32, 32);
             this.tbD82.TabIndex = 45;
             this.tbD82.Text = "0";
             // 
             // tbD81
             // 
-            this.tbD81.Location = new System.Drawing.Point(138, 328);
+            this.tbD81.Location = new System.Drawing.Point(137, 325);
             this.tbD81.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD81.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD81.Name = "tbD81";
             this.tbD81.ReadOnly = true;
-            this.tbD81.Size = new System.Drawing.Size(32, 31);
+            this.tbD81.Size = new System.Drawing.Size(32, 32);
             this.tbD81.TabIndex = 44;
             this.tbD81.Text = "0";
             // 
             // tbR7
             // 
-            this.tbR7.Location = new System.Drawing.Point(289, 291);
+            this.tbR7.Location = new System.Drawing.Point(288, 289);
             this.tbR7.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR7.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR7.Name = "tbR7";
             this.tbR7.ReadOnly = true;
-            this.tbR7.Size = new System.Drawing.Size(32, 31);
+            this.tbR7.Size = new System.Drawing.Size(32, 32);
             this.tbR7.TabIndex = 43;
             this.tbR7.Text = "0";
             // 
             // tbD74
             // 
-            this.tbD74.Location = new System.Drawing.Point(240, 291);
+            this.tbD74.Location = new System.Drawing.Point(239, 289);
             this.tbD74.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD74.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD74.Name = "tbD74";
             this.tbD74.ReadOnly = true;
-            this.tbD74.Size = new System.Drawing.Size(32, 31);
+            this.tbD74.Size = new System.Drawing.Size(32, 32);
             this.tbD74.TabIndex = 42;
             this.tbD74.Text = "0";
             // 
             // tbD73
             // 
-            this.tbD73.Location = new System.Drawing.Point(206, 291);
+            this.tbD73.Location = new System.Drawing.Point(205, 289);
             this.tbD73.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD73.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD73.Name = "tbD73";
             this.tbD73.ReadOnly = true;
-            this.tbD73.Size = new System.Drawing.Size(32, 31);
+            this.tbD73.Size = new System.Drawing.Size(32, 32);
             this.tbD73.TabIndex = 41;
             this.tbD73.Text = "0";
             // 
             // tbD72
             // 
-            this.tbD72.Location = new System.Drawing.Point(172, 291);
+            this.tbD72.Location = new System.Drawing.Point(171, 289);
             this.tbD72.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD72.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD72.Name = "tbD72";
             this.tbD72.ReadOnly = true;
-            this.tbD72.Size = new System.Drawing.Size(32, 31);
+            this.tbD72.Size = new System.Drawing.Size(32, 32);
             this.tbD72.TabIndex = 40;
             this.tbD72.Text = "0";
             // 
             // tbD71
             // 
-            this.tbD71.Location = new System.Drawing.Point(138, 291);
+            this.tbD71.Location = new System.Drawing.Point(137, 289);
             this.tbD71.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD71.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD71.Name = "tbD71";
             this.tbD71.ReadOnly = true;
-            this.tbD71.Size = new System.Drawing.Size(32, 31);
+            this.tbD71.Size = new System.Drawing.Size(32, 32);
             this.tbD71.TabIndex = 39;
             this.tbD71.Text = "0";
             // 
             // tbR6
             // 
-            this.tbR6.Location = new System.Drawing.Point(289, 254);
+            this.tbR6.Location = new System.Drawing.Point(288, 252);
             this.tbR6.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR6.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR6.Name = "tbR6";
             this.tbR6.ReadOnly = true;
-            this.tbR6.Size = new System.Drawing.Size(32, 31);
+            this.tbR6.Size = new System.Drawing.Size(32, 32);
             this.tbR6.TabIndex = 38;
             this.tbR6.Text = "0";
             // 
             // tbD64
             // 
-            this.tbD64.Location = new System.Drawing.Point(240, 254);
+            this.tbD64.Location = new System.Drawing.Point(239, 252);
             this.tbD64.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD64.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD64.Name = "tbD64";
             this.tbD64.ReadOnly = true;
-            this.tbD64.Size = new System.Drawing.Size(32, 31);
+            this.tbD64.Size = new System.Drawing.Size(32, 32);
             this.tbD64.TabIndex = 37;
             this.tbD64.Text = "0";
             // 
             // tbD63
             // 
-            this.tbD63.Location = new System.Drawing.Point(206, 254);
+            this.tbD63.Location = new System.Drawing.Point(205, 252);
             this.tbD63.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD63.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD63.Name = "tbD63";
             this.tbD63.ReadOnly = true;
-            this.tbD63.Size = new System.Drawing.Size(32, 31);
+            this.tbD63.Size = new System.Drawing.Size(32, 32);
             this.tbD63.TabIndex = 36;
             this.tbD63.Text = "0";
             // 
             // tbD62
             // 
-            this.tbD62.Location = new System.Drawing.Point(172, 254);
+            this.tbD62.Location = new System.Drawing.Point(171, 252);
             this.tbD62.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD62.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD62.Name = "tbD62";
             this.tbD62.ReadOnly = true;
-            this.tbD62.Size = new System.Drawing.Size(32, 31);
+            this.tbD62.Size = new System.Drawing.Size(32, 32);
             this.tbD62.TabIndex = 35;
             this.tbD62.Text = "0";
             // 
             // tbD61
             // 
-            this.tbD61.Location = new System.Drawing.Point(138, 254);
+            this.tbD61.Location = new System.Drawing.Point(137, 252);
             this.tbD61.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD61.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD61.Name = "tbD61";
             this.tbD61.ReadOnly = true;
-            this.tbD61.Size = new System.Drawing.Size(32, 31);
+            this.tbD61.Size = new System.Drawing.Size(32, 32);
             this.tbD61.TabIndex = 34;
             this.tbD61.Text = "0";
             // 
             // tbR5
             // 
-            this.tbR5.Location = new System.Drawing.Point(289, 217);
+            this.tbR5.Location = new System.Drawing.Point(288, 216);
             this.tbR5.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR5.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR5.Name = "tbR5";
             this.tbR5.ReadOnly = true;
-            this.tbR5.Size = new System.Drawing.Size(32, 31);
+            this.tbR5.Size = new System.Drawing.Size(32, 32);
             this.tbR5.TabIndex = 33;
             this.tbR5.Text = "0";
             // 
             // tbD54
             // 
-            this.tbD54.Location = new System.Drawing.Point(240, 217);
+            this.tbD54.Location = new System.Drawing.Point(239, 216);
             this.tbD54.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD54.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD54.Name = "tbD54";
             this.tbD54.ReadOnly = true;
-            this.tbD54.Size = new System.Drawing.Size(32, 31);
+            this.tbD54.Size = new System.Drawing.Size(32, 32);
             this.tbD54.TabIndex = 32;
             this.tbD54.Text = "0";
             // 
             // tbD53
             // 
-            this.tbD53.Location = new System.Drawing.Point(206, 217);
+            this.tbD53.Location = new System.Drawing.Point(205, 216);
             this.tbD53.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD53.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD53.Name = "tbD53";
             this.tbD53.ReadOnly = true;
-            this.tbD53.Size = new System.Drawing.Size(32, 31);
+            this.tbD53.Size = new System.Drawing.Size(32, 32);
             this.tbD53.TabIndex = 31;
             this.tbD53.Text = "0";
             // 
             // tbD52
             // 
-            this.tbD52.Location = new System.Drawing.Point(172, 217);
+            this.tbD52.Location = new System.Drawing.Point(171, 216);
             this.tbD52.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD52.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD52.Name = "tbD52";
             this.tbD52.ReadOnly = true;
-            this.tbD52.Size = new System.Drawing.Size(32, 31);
+            this.tbD52.Size = new System.Drawing.Size(32, 32);
             this.tbD52.TabIndex = 30;
             this.tbD52.Text = "0";
             // 
             // tbD51
             // 
-            this.tbD51.Location = new System.Drawing.Point(138, 217);
+            this.tbD51.Location = new System.Drawing.Point(137, 216);
             this.tbD51.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD51.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD51.Name = "tbD51";
             this.tbD51.ReadOnly = true;
-            this.tbD51.Size = new System.Drawing.Size(32, 31);
+            this.tbD51.Size = new System.Drawing.Size(32, 32);
             this.tbD51.TabIndex = 29;
             this.tbD51.Text = "0";
             // 
             // tbR4
             // 
-            this.tbR4.Location = new System.Drawing.Point(289, 180);
+            this.tbR4.Location = new System.Drawing.Point(288, 179);
             this.tbR4.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR4.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR4.Name = "tbR4";
             this.tbR4.ReadOnly = true;
-            this.tbR4.Size = new System.Drawing.Size(32, 31);
+            this.tbR4.Size = new System.Drawing.Size(32, 32);
             this.tbR4.TabIndex = 28;
             this.tbR4.Text = "0";
             // 
             // tbD44
             // 
-            this.tbD44.Location = new System.Drawing.Point(240, 180);
+            this.tbD44.Location = new System.Drawing.Point(239, 179);
             this.tbD44.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD44.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD44.Name = "tbD44";
             this.tbD44.ReadOnly = true;
-            this.tbD44.Size = new System.Drawing.Size(32, 31);
+            this.tbD44.Size = new System.Drawing.Size(32, 32);
             this.tbD44.TabIndex = 27;
             this.tbD44.Text = "0";
             // 
             // tbD43
             // 
-            this.tbD43.Location = new System.Drawing.Point(206, 180);
+            this.tbD43.Location = new System.Drawing.Point(205, 179);
             this.tbD43.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD43.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD43.Name = "tbD43";
             this.tbD43.ReadOnly = true;
-            this.tbD43.Size = new System.Drawing.Size(32, 31);
+            this.tbD43.Size = new System.Drawing.Size(32, 32);
             this.tbD43.TabIndex = 26;
             this.tbD43.Text = "0";
             // 
             // tbD42
             // 
-            this.tbD42.Location = new System.Drawing.Point(172, 180);
+            this.tbD42.Location = new System.Drawing.Point(171, 179);
             this.tbD42.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD42.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD42.Name = "tbD42";
             this.tbD42.ReadOnly = true;
-            this.tbD42.Size = new System.Drawing.Size(32, 31);
+            this.tbD42.Size = new System.Drawing.Size(32, 32);
             this.tbD42.TabIndex = 25;
             this.tbD42.Text = "0";
             // 
             // tbD41
             // 
-            this.tbD41.Location = new System.Drawing.Point(138, 180);
+            this.tbD41.Location = new System.Drawing.Point(137, 179);
             this.tbD41.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD41.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD41.Name = "tbD41";
             this.tbD41.ReadOnly = true;
-            this.tbD41.Size = new System.Drawing.Size(32, 31);
+            this.tbD41.Size = new System.Drawing.Size(32, 32);
             this.tbD41.TabIndex = 24;
             this.tbD41.Text = "0";
             // 
             // tbR3
             // 
-            this.tbR3.Location = new System.Drawing.Point(289, 143);
+            this.tbR3.Location = new System.Drawing.Point(288, 143);
             this.tbR3.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR3.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR3.Name = "tbR3";
             this.tbR3.ReadOnly = true;
-            this.tbR3.Size = new System.Drawing.Size(32, 31);
+            this.tbR3.Size = new System.Drawing.Size(32, 32);
             this.tbR3.TabIndex = 23;
             this.tbR3.Text = "0";
             // 
             // tbD34
             // 
-            this.tbD34.Location = new System.Drawing.Point(240, 143);
+            this.tbD34.Location = new System.Drawing.Point(239, 143);
             this.tbD34.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD34.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD34.Name = "tbD34";
             this.tbD34.ReadOnly = true;
-            this.tbD34.Size = new System.Drawing.Size(32, 31);
+            this.tbD34.Size = new System.Drawing.Size(32, 32);
             this.tbD34.TabIndex = 22;
             this.tbD34.Text = "0";
             // 
             // tbD33
             // 
-            this.tbD33.Location = new System.Drawing.Point(206, 143);
+            this.tbD33.Location = new System.Drawing.Point(205, 143);
             this.tbD33.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD33.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD33.Name = "tbD33";
             this.tbD33.ReadOnly = true;
-            this.tbD33.Size = new System.Drawing.Size(32, 31);
+            this.tbD33.Size = new System.Drawing.Size(32, 32);
             this.tbD33.TabIndex = 21;
             this.tbD33.Text = "0";
             // 
             // tbD32
             // 
-            this.tbD32.Location = new System.Drawing.Point(172, 143);
+            this.tbD32.Location = new System.Drawing.Point(171, 143);
             this.tbD32.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD32.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD32.Name = "tbD32";
             this.tbD32.ReadOnly = true;
-            this.tbD32.Size = new System.Drawing.Size(32, 31);
+            this.tbD32.Size = new System.Drawing.Size(32, 32);
             this.tbD32.TabIndex = 20;
             this.tbD32.Text = "0";
             // 
             // tbD31
             // 
-            this.tbD31.Location = new System.Drawing.Point(138, 143);
+            this.tbD31.Location = new System.Drawing.Point(137, 143);
             this.tbD31.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD31.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD31.Name = "tbD31";
             this.tbD31.ReadOnly = true;
-            this.tbD31.Size = new System.Drawing.Size(32, 31);
+            this.tbD31.Size = new System.Drawing.Size(32, 32);
             this.tbD31.TabIndex = 19;
             this.tbD31.Text = "0";
             // 
             // tbR2
             // 
-            this.tbR2.Location = new System.Drawing.Point(289, 106);
+            this.tbR2.Location = new System.Drawing.Point(288, 106);
             this.tbR2.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR2.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR2.Name = "tbR2";
             this.tbR2.ReadOnly = true;
-            this.tbR2.Size = new System.Drawing.Size(32, 31);
+            this.tbR2.Size = new System.Drawing.Size(32, 32);
             this.tbR2.TabIndex = 18;
             this.tbR2.Text = "0";
             // 
             // tbD24
             // 
-            this.tbD24.Location = new System.Drawing.Point(240, 106);
+            this.tbD24.Location = new System.Drawing.Point(239, 106);
             this.tbD24.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD24.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD24.Name = "tbD24";
             this.tbD24.ReadOnly = true;
-            this.tbD24.Size = new System.Drawing.Size(32, 31);
+            this.tbD24.Size = new System.Drawing.Size(32, 32);
             this.tbD24.TabIndex = 17;
             this.tbD24.Text = "0";
             // 
             // tbD23
             // 
-            this.tbD23.Location = new System.Drawing.Point(206, 106);
+            this.tbD23.Location = new System.Drawing.Point(205, 106);
             this.tbD23.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD23.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD23.Name = "tbD23";
             this.tbD23.ReadOnly = true;
-            this.tbD23.Size = new System.Drawing.Size(32, 31);
+            this.tbD23.Size = new System.Drawing.Size(32, 32);
             this.tbD23.TabIndex = 16;
             this.tbD23.Text = "0";
             // 
             // tbD22
             // 
-            this.tbD22.Location = new System.Drawing.Point(172, 106);
+            this.tbD22.Location = new System.Drawing.Point(171, 106);
             this.tbD22.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD22.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD22.Name = "tbD22";
             this.tbD22.ReadOnly = true;
-            this.tbD22.Size = new System.Drawing.Size(32, 31);
+            this.tbD22.Size = new System.Drawing.Size(32, 32);
             this.tbD22.TabIndex = 15;
             this.tbD22.Text = "0";
             // 
             // tbD21
             // 
-            this.tbD21.Location = new System.Drawing.Point(138, 106);
+            this.tbD21.Location = new System.Drawing.Point(137, 106);
             this.tbD21.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD21.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD21.Name = "tbD21";
             this.tbD21.ReadOnly = true;
-            this.tbD21.Size = new System.Drawing.Size(32, 31);
+            this.tbD21.Size = new System.Drawing.Size(32, 32);
             this.tbD21.TabIndex = 14;
             this.tbD21.Text = "0";
             // 
             // tbR1
             // 
-            this.tbR1.Location = new System.Drawing.Point(289, 69);
+            this.tbR1.Location = new System.Drawing.Point(288, 69);
             this.tbR1.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbR1.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR1.Name = "tbR1";
             this.tbR1.ReadOnly = true;
-            this.tbR1.Size = new System.Drawing.Size(32, 31);
+            this.tbR1.Size = new System.Drawing.Size(32, 32);
             this.tbR1.TabIndex = 13;
             this.tbR1.Text = "0";
             // 
             // tbD14
             // 
-            this.tbD14.Location = new System.Drawing.Point(240, 69);
+            this.tbD14.Location = new System.Drawing.Point(239, 69);
             this.tbD14.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD14.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD14.Name = "tbD14";
             this.tbD14.ReadOnly = true;
-            this.tbD14.Size = new System.Drawing.Size(32, 31);
+            this.tbD14.Size = new System.Drawing.Size(32, 32);
             this.tbD14.TabIndex = 12;
             this.tbD14.Text = "0";
             // 
             // tbD13
             // 
-            this.tbD13.Location = new System.Drawing.Point(206, 69);
+            this.tbD13.Location = new System.Drawing.Point(205, 69);
             this.tbD13.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD13.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD13.Name = "tbD13";
             this.tbD13.ReadOnly = true;
-            this.tbD13.Size = new System.Drawing.Size(32, 31);
+            this.tbD13.Size = new System.Drawing.Size(32, 32);
             this.tbD13.TabIndex = 11;
             this.tbD13.Text = "0";
             // 
             // tbD12
             // 
-            this.tbD12.Location = new System.Drawing.Point(172, 69);
+            this.tbD12.Location = new System.Drawing.Point(171, 69);
             this.tbD12.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD12.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD12.Name = "tbD12";
             this.tbD12.ReadOnly = true;
-            this.tbD12.Size = new System.Drawing.Size(32, 31);
+            this.tbD12.Size = new System.Drawing.Size(32, 32);
             this.tbD12.TabIndex = 10;
             this.tbD12.Text = "0";
             // 
             // tbD11
             // 
-            this.tbD11.Location = new System.Drawing.Point(138, 69);
+            this.tbD11.Location = new System.Drawing.Point(137, 69);
             this.tbD11.MaximumSize = new System.Drawing.Size(32, 32);
             this.tbD11.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD11.Name = "tbD11";
             this.tbD11.ReadOnly = true;
-            this.tbD11.Size = new System.Drawing.Size(32, 31);
+            this.tbD11.Size = new System.Drawing.Size(32, 32);
             this.tbD11.TabIndex = 9;
             this.tbD11.Text = "0";
             // 
@@ -1226,7 +1229,7 @@
             this.cbComPort.FormattingEnabled = true;
             this.cbComPort.Location = new System.Drawing.Point(12, 37);
             this.cbComPort.Name = "cbComPort";
-            this.cbComPort.Size = new System.Drawing.Size(194, 33);
+            this.cbComPort.Size = new System.Drawing.Size(189, 33);
             this.cbComPort.TabIndex = 4;
             // 
             // label4
@@ -1250,6 +1253,7 @@
             // 
             // btnDisconnect
             // 
+            this.btnDisconnect.Enabled = false;
             this.btnDisconnect.Location = new System.Drawing.Point(12, 137);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(238, 38);
@@ -1260,11 +1264,12 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(212, 39);
+            this.btnRefresh.BackgroundImage = global::RFIDReader.Properties.Resources.refresh;
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefresh.Location = new System.Drawing.Point(207, 35);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(38, 38);
+            this.btnRefresh.Size = new System.Drawing.Size(44, 44);
             this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "button1";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -1282,7 +1287,25 @@
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblStatus.Size = new System.Drawing.Size(0, 12);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(17, 633);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(300, 44);
+            this.button1.TabIndex = 65;
+            this.button1.Text = "Open file";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 680);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(300, 44);
+            this.button2.TabIndex = 66;
+            this.button2.Text = "Save file";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // MainFrm
             // 
@@ -1423,6 +1446,8 @@
         private System.Windows.Forms.TextBox tbD91;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

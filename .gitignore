@@ -3,3 +3,5 @@ snapshots
 bin
 obj
 Debug
+*.hex
+*.bak

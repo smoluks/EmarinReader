@@ -44,22 +44,32 @@ namespace RFIDReader.Managers
             int count = 0;
             int repeatCount = 0;
             int delay = 200;
-            var data = await _comPortManager.SendAsync(new byte[1] { 0x20 }, 10000, cancellationToken);
+
+            var data = new byte[8];
+            bool first = true;
 
             do
             {
                 await Task.Delay(delay);
-                var newData = await _comPortManager.SendAsync(new byte[1] { 0x20 }, 1000, cancellationToken);
-                if (CompareArray(data, newData))
-                {
-                    repeatCount++;
-                }
-                else
-                {
-                    delay += 100;
-                }
+                var newData = await _comPortManager.SendAsync(new byte[1] { 0x20 }, 10000, cancellationToken);
 
-                data = newData;
+                if (newData[0] == 0xFF && (newData[1] & 0x01) == 0x01)
+                {
+                    if (!first) {
+                        if (CompareArray(data, newData))
+                        {
+                            repeatCount++;
+                        }
+                        else
+                        {
+                            delay += 100;
+                        }
+                    }
+
+                    data = newData;
+                    first = false;
+                }
+                
                 count++;
             }
             while (count < 20 && repeatCount < 3);

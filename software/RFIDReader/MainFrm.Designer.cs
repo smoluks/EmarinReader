@@ -54,6 +54,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnWrite4305 = new System.Windows.Forms.Button();
+            this.btnValidate = new System.Windows.Forms.Button();
+            this.btnSaveEmarin = new System.Windows.Forms.Button();
+            this.btnOpenEmarin = new System.Windows.Forms.Button();
             this.tbR0 = new System.Windows.Forms.TextBox();
             this.tbD04 = new System.Windows.Forms.TextBox();
             this.tbD03 = new System.Windows.Forms.TextBox();
@@ -126,8 +131,8 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -136,6 +141,7 @@
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -435,8 +441,10 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button2);
-            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.groupBox4);
+            this.tabPage4.Controls.Add(this.btnValidate);
+            this.tabPage4.Controls.Add(this.btnSaveEmarin);
+            this.tabPage4.Controls.Add(this.btnOpenEmarin);
             this.tabPage4.Controls.Add(this.tbR0);
             this.tabPage4.Controls.Add(this.tbD04);
             this.tabPage4.Controls.Add(this.tbD03);
@@ -510,6 +518,57 @@
             this.tabPage4.Text = "EM-Marin";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnWrite4305);
+            this.groupBox4.Location = new System.Drawing.Point(344, 18);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(234, 245);
+            this.groupBox4.TabIndex = 68;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "EM4305";
+            // 
+            // btnWrite4305
+            // 
+            this.btnWrite4305.Location = new System.Drawing.Point(24, 88);
+            this.btnWrite4305.Name = "btnWrite4305";
+            this.btnWrite4305.Size = new System.Drawing.Size(188, 37);
+            this.btnWrite4305.TabIndex = 0;
+            this.btnWrite4305.Text = "Write";
+            this.btnWrite4305.UseVisualStyleBackColor = true;
+            this.btnWrite4305.Click += new System.EventHandler(this.btnWrite4305_ClickAsync);
+            // 
+            // btnValidate
+            // 
+            this.btnValidate.Enabled = false;
+            this.btnValidate.Location = new System.Drawing.Point(17, 563);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.Size = new System.Drawing.Size(300, 44);
+            this.btnValidate.TabIndex = 67;
+            this.btnValidate.Text = "Validate";
+            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_ClickAsync);
+            // 
+            // btnSaveEmarin
+            // 
+            this.btnSaveEmarin.Location = new System.Drawing.Point(17, 680);
+            this.btnSaveEmarin.Name = "btnSaveEmarin";
+            this.btnSaveEmarin.Size = new System.Drawing.Size(300, 44);
+            this.btnSaveEmarin.TabIndex = 66;
+            this.btnSaveEmarin.Text = "Save file";
+            this.btnSaveEmarin.UseVisualStyleBackColor = true;
+            this.btnSaveEmarin.Click += new System.EventHandler(this.btnSaveEmarin_Click);
+            // 
+            // btnOpenEmarin
+            // 
+            this.btnOpenEmarin.Location = new System.Drawing.Point(17, 633);
+            this.btnOpenEmarin.Name = "btnOpenEmarin";
+            this.btnOpenEmarin.Size = new System.Drawing.Size(300, 44);
+            this.btnOpenEmarin.TabIndex = 65;
+            this.btnOpenEmarin.Text = "Open file";
+            this.btnOpenEmarin.UseVisualStyleBackColor = true;
+            this.btnOpenEmarin.Click += new System.EventHandler(this.btnOpenEmarin_Click);
+            // 
             // tbR0
             // 
             this.tbR0.Location = new System.Drawing.Point(288, 399);
@@ -517,7 +576,7 @@
             this.tbR0.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR0.Name = "tbR0";
             this.tbR0.ReadOnly = true;
-            this.tbR0.Size = new System.Drawing.Size(32, 32);
+            this.tbR0.Size = new System.Drawing.Size(32, 31);
             this.tbR0.TabIndex = 64;
             this.tbR0.Text = "0";
             // 
@@ -528,7 +587,7 @@
             this.tbD04.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD04.Name = "tbD04";
             this.tbD04.ReadOnly = true;
-            this.tbD04.Size = new System.Drawing.Size(32, 32);
+            this.tbD04.Size = new System.Drawing.Size(32, 31);
             this.tbD04.TabIndex = 63;
             this.tbD04.Text = "0";
             // 
@@ -539,7 +598,7 @@
             this.tbD03.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD03.Name = "tbD03";
             this.tbD03.ReadOnly = true;
-            this.tbD03.Size = new System.Drawing.Size(32, 32);
+            this.tbD03.Size = new System.Drawing.Size(32, 31);
             this.tbD03.TabIndex = 62;
             this.tbD03.Text = "0";
             // 
@@ -550,7 +609,7 @@
             this.tbD02.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD02.Name = "tbD02";
             this.tbD02.ReadOnly = true;
-            this.tbD02.Size = new System.Drawing.Size(32, 32);
+            this.tbD02.Size = new System.Drawing.Size(32, 31);
             this.tbD02.TabIndex = 61;
             this.tbD02.Text = "0";
             // 
@@ -561,7 +620,7 @@
             this.tbD01.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD01.Name = "tbD01";
             this.tbD01.ReadOnly = true;
-            this.tbD01.Size = new System.Drawing.Size(32, 32);
+            this.tbD01.Size = new System.Drawing.Size(32, 31);
             this.tbD01.TabIndex = 60;
             this.tbD01.Text = "0";
             // 
@@ -572,7 +631,7 @@
             this.tbR9.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR9.Name = "tbR9";
             this.tbR9.ReadOnly = true;
-            this.tbR9.Size = new System.Drawing.Size(32, 32);
+            this.tbR9.Size = new System.Drawing.Size(32, 31);
             this.tbR9.TabIndex = 59;
             this.tbR9.Text = "0";
             // 
@@ -583,7 +642,7 @@
             this.tbD94.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD94.Name = "tbD94";
             this.tbD94.ReadOnly = true;
-            this.tbD94.Size = new System.Drawing.Size(32, 32);
+            this.tbD94.Size = new System.Drawing.Size(32, 31);
             this.tbD94.TabIndex = 58;
             this.tbD94.Text = "0";
             // 
@@ -594,7 +653,7 @@
             this.tbD93.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD93.Name = "tbD93";
             this.tbD93.ReadOnly = true;
-            this.tbD93.Size = new System.Drawing.Size(32, 32);
+            this.tbD93.Size = new System.Drawing.Size(32, 31);
             this.tbD93.TabIndex = 57;
             this.tbD93.Text = "0";
             // 
@@ -605,7 +664,7 @@
             this.tbD92.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD92.Name = "tbD92";
             this.tbD92.ReadOnly = true;
-            this.tbD92.Size = new System.Drawing.Size(32, 32);
+            this.tbD92.Size = new System.Drawing.Size(32, 31);
             this.tbD92.TabIndex = 56;
             this.tbD92.Text = "0";
             // 
@@ -616,13 +675,13 @@
             this.tbD91.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD91.Name = "tbD91";
             this.tbD91.ReadOnly = true;
-            this.tbD91.Size = new System.Drawing.Size(32, 32);
+            this.tbD91.Size = new System.Drawing.Size(32, 31);
             this.tbD91.TabIndex = 55;
             this.tbD91.Text = "0";
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(17, 531);
+            this.btnRead.Location = new System.Drawing.Point(17, 513);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(300, 44);
             this.btnRead.TabIndex = 54;
@@ -637,7 +696,7 @@
             this.tbP1.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbP1.Name = "tbP1";
             this.tbP1.ReadOnly = true;
-            this.tbP1.Size = new System.Drawing.Size(32, 32);
+            this.tbP1.Size = new System.Drawing.Size(32, 31);
             this.tbP1.TabIndex = 53;
             this.tbP1.Text = "0";
             // 
@@ -648,7 +707,7 @@
             this.tbC4.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC4.Name = "tbC4";
             this.tbC4.ReadOnly = true;
-            this.tbC4.Size = new System.Drawing.Size(32, 32);
+            this.tbC4.Size = new System.Drawing.Size(32, 31);
             this.tbC4.TabIndex = 52;
             this.tbC4.Text = "0";
             // 
@@ -659,7 +718,7 @@
             this.tbC3.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC3.Name = "tbC3";
             this.tbC3.ReadOnly = true;
-            this.tbC3.Size = new System.Drawing.Size(32, 32);
+            this.tbC3.Size = new System.Drawing.Size(32, 31);
             this.tbC3.TabIndex = 51;
             this.tbC3.Text = "0";
             // 
@@ -670,7 +729,7 @@
             this.tbC2.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC2.Name = "tbC2";
             this.tbC2.ReadOnly = true;
-            this.tbC2.Size = new System.Drawing.Size(32, 32);
+            this.tbC2.Size = new System.Drawing.Size(32, 31);
             this.tbC2.TabIndex = 50;
             this.tbC2.Text = "0";
             // 
@@ -681,7 +740,7 @@
             this.tbC1.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbC1.Name = "tbC1";
             this.tbC1.ReadOnly = true;
-            this.tbC1.Size = new System.Drawing.Size(32, 32);
+            this.tbC1.Size = new System.Drawing.Size(32, 31);
             this.tbC1.TabIndex = 49;
             this.tbC1.Text = "0";
             // 
@@ -692,7 +751,7 @@
             this.tbR8.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR8.Name = "tbR8";
             this.tbR8.ReadOnly = true;
-            this.tbR8.Size = new System.Drawing.Size(32, 32);
+            this.tbR8.Size = new System.Drawing.Size(32, 31);
             this.tbR8.TabIndex = 48;
             this.tbR8.Text = "0";
             // 
@@ -703,7 +762,7 @@
             this.tbD84.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD84.Name = "tbD84";
             this.tbD84.ReadOnly = true;
-            this.tbD84.Size = new System.Drawing.Size(32, 32);
+            this.tbD84.Size = new System.Drawing.Size(32, 31);
             this.tbD84.TabIndex = 47;
             this.tbD84.Text = "0";
             // 
@@ -714,7 +773,7 @@
             this.tbD83.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD83.Name = "tbD83";
             this.tbD83.ReadOnly = true;
-            this.tbD83.Size = new System.Drawing.Size(32, 32);
+            this.tbD83.Size = new System.Drawing.Size(32, 31);
             this.tbD83.TabIndex = 46;
             this.tbD83.Text = "0";
             // 
@@ -725,7 +784,7 @@
             this.tbD82.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD82.Name = "tbD82";
             this.tbD82.ReadOnly = true;
-            this.tbD82.Size = new System.Drawing.Size(32, 32);
+            this.tbD82.Size = new System.Drawing.Size(32, 31);
             this.tbD82.TabIndex = 45;
             this.tbD82.Text = "0";
             // 
@@ -736,7 +795,7 @@
             this.tbD81.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD81.Name = "tbD81";
             this.tbD81.ReadOnly = true;
-            this.tbD81.Size = new System.Drawing.Size(32, 32);
+            this.tbD81.Size = new System.Drawing.Size(32, 31);
             this.tbD81.TabIndex = 44;
             this.tbD81.Text = "0";
             // 
@@ -747,7 +806,7 @@
             this.tbR7.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR7.Name = "tbR7";
             this.tbR7.ReadOnly = true;
-            this.tbR7.Size = new System.Drawing.Size(32, 32);
+            this.tbR7.Size = new System.Drawing.Size(32, 31);
             this.tbR7.TabIndex = 43;
             this.tbR7.Text = "0";
             // 
@@ -758,7 +817,7 @@
             this.tbD74.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD74.Name = "tbD74";
             this.tbD74.ReadOnly = true;
-            this.tbD74.Size = new System.Drawing.Size(32, 32);
+            this.tbD74.Size = new System.Drawing.Size(32, 31);
             this.tbD74.TabIndex = 42;
             this.tbD74.Text = "0";
             // 
@@ -769,7 +828,7 @@
             this.tbD73.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD73.Name = "tbD73";
             this.tbD73.ReadOnly = true;
-            this.tbD73.Size = new System.Drawing.Size(32, 32);
+            this.tbD73.Size = new System.Drawing.Size(32, 31);
             this.tbD73.TabIndex = 41;
             this.tbD73.Text = "0";
             // 
@@ -780,7 +839,7 @@
             this.tbD72.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD72.Name = "tbD72";
             this.tbD72.ReadOnly = true;
-            this.tbD72.Size = new System.Drawing.Size(32, 32);
+            this.tbD72.Size = new System.Drawing.Size(32, 31);
             this.tbD72.TabIndex = 40;
             this.tbD72.Text = "0";
             // 
@@ -791,7 +850,7 @@
             this.tbD71.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD71.Name = "tbD71";
             this.tbD71.ReadOnly = true;
-            this.tbD71.Size = new System.Drawing.Size(32, 32);
+            this.tbD71.Size = new System.Drawing.Size(32, 31);
             this.tbD71.TabIndex = 39;
             this.tbD71.Text = "0";
             // 
@@ -802,7 +861,7 @@
             this.tbR6.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR6.Name = "tbR6";
             this.tbR6.ReadOnly = true;
-            this.tbR6.Size = new System.Drawing.Size(32, 32);
+            this.tbR6.Size = new System.Drawing.Size(32, 31);
             this.tbR6.TabIndex = 38;
             this.tbR6.Text = "0";
             // 
@@ -813,7 +872,7 @@
             this.tbD64.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD64.Name = "tbD64";
             this.tbD64.ReadOnly = true;
-            this.tbD64.Size = new System.Drawing.Size(32, 32);
+            this.tbD64.Size = new System.Drawing.Size(32, 31);
             this.tbD64.TabIndex = 37;
             this.tbD64.Text = "0";
             // 
@@ -824,7 +883,7 @@
             this.tbD63.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD63.Name = "tbD63";
             this.tbD63.ReadOnly = true;
-            this.tbD63.Size = new System.Drawing.Size(32, 32);
+            this.tbD63.Size = new System.Drawing.Size(32, 31);
             this.tbD63.TabIndex = 36;
             this.tbD63.Text = "0";
             // 
@@ -835,7 +894,7 @@
             this.tbD62.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD62.Name = "tbD62";
             this.tbD62.ReadOnly = true;
-            this.tbD62.Size = new System.Drawing.Size(32, 32);
+            this.tbD62.Size = new System.Drawing.Size(32, 31);
             this.tbD62.TabIndex = 35;
             this.tbD62.Text = "0";
             // 
@@ -846,7 +905,7 @@
             this.tbD61.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD61.Name = "tbD61";
             this.tbD61.ReadOnly = true;
-            this.tbD61.Size = new System.Drawing.Size(32, 32);
+            this.tbD61.Size = new System.Drawing.Size(32, 31);
             this.tbD61.TabIndex = 34;
             this.tbD61.Text = "0";
             // 
@@ -857,7 +916,7 @@
             this.tbR5.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR5.Name = "tbR5";
             this.tbR5.ReadOnly = true;
-            this.tbR5.Size = new System.Drawing.Size(32, 32);
+            this.tbR5.Size = new System.Drawing.Size(32, 31);
             this.tbR5.TabIndex = 33;
             this.tbR5.Text = "0";
             // 
@@ -868,7 +927,7 @@
             this.tbD54.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD54.Name = "tbD54";
             this.tbD54.ReadOnly = true;
-            this.tbD54.Size = new System.Drawing.Size(32, 32);
+            this.tbD54.Size = new System.Drawing.Size(32, 31);
             this.tbD54.TabIndex = 32;
             this.tbD54.Text = "0";
             // 
@@ -879,7 +938,7 @@
             this.tbD53.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD53.Name = "tbD53";
             this.tbD53.ReadOnly = true;
-            this.tbD53.Size = new System.Drawing.Size(32, 32);
+            this.tbD53.Size = new System.Drawing.Size(32, 31);
             this.tbD53.TabIndex = 31;
             this.tbD53.Text = "0";
             // 
@@ -890,7 +949,7 @@
             this.tbD52.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD52.Name = "tbD52";
             this.tbD52.ReadOnly = true;
-            this.tbD52.Size = new System.Drawing.Size(32, 32);
+            this.tbD52.Size = new System.Drawing.Size(32, 31);
             this.tbD52.TabIndex = 30;
             this.tbD52.Text = "0";
             // 
@@ -901,7 +960,7 @@
             this.tbD51.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD51.Name = "tbD51";
             this.tbD51.ReadOnly = true;
-            this.tbD51.Size = new System.Drawing.Size(32, 32);
+            this.tbD51.Size = new System.Drawing.Size(32, 31);
             this.tbD51.TabIndex = 29;
             this.tbD51.Text = "0";
             // 
@@ -912,7 +971,7 @@
             this.tbR4.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR4.Name = "tbR4";
             this.tbR4.ReadOnly = true;
-            this.tbR4.Size = new System.Drawing.Size(32, 32);
+            this.tbR4.Size = new System.Drawing.Size(32, 31);
             this.tbR4.TabIndex = 28;
             this.tbR4.Text = "0";
             // 
@@ -923,7 +982,7 @@
             this.tbD44.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD44.Name = "tbD44";
             this.tbD44.ReadOnly = true;
-            this.tbD44.Size = new System.Drawing.Size(32, 32);
+            this.tbD44.Size = new System.Drawing.Size(32, 31);
             this.tbD44.TabIndex = 27;
             this.tbD44.Text = "0";
             // 
@@ -934,7 +993,7 @@
             this.tbD43.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD43.Name = "tbD43";
             this.tbD43.ReadOnly = true;
-            this.tbD43.Size = new System.Drawing.Size(32, 32);
+            this.tbD43.Size = new System.Drawing.Size(32, 31);
             this.tbD43.TabIndex = 26;
             this.tbD43.Text = "0";
             // 
@@ -945,7 +1004,7 @@
             this.tbD42.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD42.Name = "tbD42";
             this.tbD42.ReadOnly = true;
-            this.tbD42.Size = new System.Drawing.Size(32, 32);
+            this.tbD42.Size = new System.Drawing.Size(32, 31);
             this.tbD42.TabIndex = 25;
             this.tbD42.Text = "0";
             // 
@@ -956,7 +1015,7 @@
             this.tbD41.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD41.Name = "tbD41";
             this.tbD41.ReadOnly = true;
-            this.tbD41.Size = new System.Drawing.Size(32, 32);
+            this.tbD41.Size = new System.Drawing.Size(32, 31);
             this.tbD41.TabIndex = 24;
             this.tbD41.Text = "0";
             // 
@@ -967,7 +1026,7 @@
             this.tbR3.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR3.Name = "tbR3";
             this.tbR3.ReadOnly = true;
-            this.tbR3.Size = new System.Drawing.Size(32, 32);
+            this.tbR3.Size = new System.Drawing.Size(32, 31);
             this.tbR3.TabIndex = 23;
             this.tbR3.Text = "0";
             // 
@@ -978,7 +1037,7 @@
             this.tbD34.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD34.Name = "tbD34";
             this.tbD34.ReadOnly = true;
-            this.tbD34.Size = new System.Drawing.Size(32, 32);
+            this.tbD34.Size = new System.Drawing.Size(32, 31);
             this.tbD34.TabIndex = 22;
             this.tbD34.Text = "0";
             // 
@@ -989,7 +1048,7 @@
             this.tbD33.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD33.Name = "tbD33";
             this.tbD33.ReadOnly = true;
-            this.tbD33.Size = new System.Drawing.Size(32, 32);
+            this.tbD33.Size = new System.Drawing.Size(32, 31);
             this.tbD33.TabIndex = 21;
             this.tbD33.Text = "0";
             // 
@@ -1000,7 +1059,7 @@
             this.tbD32.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD32.Name = "tbD32";
             this.tbD32.ReadOnly = true;
-            this.tbD32.Size = new System.Drawing.Size(32, 32);
+            this.tbD32.Size = new System.Drawing.Size(32, 31);
             this.tbD32.TabIndex = 20;
             this.tbD32.Text = "0";
             // 
@@ -1011,7 +1070,7 @@
             this.tbD31.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD31.Name = "tbD31";
             this.tbD31.ReadOnly = true;
-            this.tbD31.Size = new System.Drawing.Size(32, 32);
+            this.tbD31.Size = new System.Drawing.Size(32, 31);
             this.tbD31.TabIndex = 19;
             this.tbD31.Text = "0";
             // 
@@ -1022,7 +1081,7 @@
             this.tbR2.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR2.Name = "tbR2";
             this.tbR2.ReadOnly = true;
-            this.tbR2.Size = new System.Drawing.Size(32, 32);
+            this.tbR2.Size = new System.Drawing.Size(32, 31);
             this.tbR2.TabIndex = 18;
             this.tbR2.Text = "0";
             // 
@@ -1033,7 +1092,7 @@
             this.tbD24.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD24.Name = "tbD24";
             this.tbD24.ReadOnly = true;
-            this.tbD24.Size = new System.Drawing.Size(32, 32);
+            this.tbD24.Size = new System.Drawing.Size(32, 31);
             this.tbD24.TabIndex = 17;
             this.tbD24.Text = "0";
             // 
@@ -1044,7 +1103,7 @@
             this.tbD23.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD23.Name = "tbD23";
             this.tbD23.ReadOnly = true;
-            this.tbD23.Size = new System.Drawing.Size(32, 32);
+            this.tbD23.Size = new System.Drawing.Size(32, 31);
             this.tbD23.TabIndex = 16;
             this.tbD23.Text = "0";
             // 
@@ -1055,7 +1114,7 @@
             this.tbD22.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD22.Name = "tbD22";
             this.tbD22.ReadOnly = true;
-            this.tbD22.Size = new System.Drawing.Size(32, 32);
+            this.tbD22.Size = new System.Drawing.Size(32, 31);
             this.tbD22.TabIndex = 15;
             this.tbD22.Text = "0";
             // 
@@ -1066,7 +1125,7 @@
             this.tbD21.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD21.Name = "tbD21";
             this.tbD21.ReadOnly = true;
-            this.tbD21.Size = new System.Drawing.Size(32, 32);
+            this.tbD21.Size = new System.Drawing.Size(32, 31);
             this.tbD21.TabIndex = 14;
             this.tbD21.Text = "0";
             // 
@@ -1077,7 +1136,7 @@
             this.tbR1.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbR1.Name = "tbR1";
             this.tbR1.ReadOnly = true;
-            this.tbR1.Size = new System.Drawing.Size(32, 32);
+            this.tbR1.Size = new System.Drawing.Size(32, 31);
             this.tbR1.TabIndex = 13;
             this.tbR1.Text = "0";
             // 
@@ -1088,7 +1147,7 @@
             this.tbD14.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD14.Name = "tbD14";
             this.tbD14.ReadOnly = true;
-            this.tbD14.Size = new System.Drawing.Size(32, 32);
+            this.tbD14.Size = new System.Drawing.Size(32, 31);
             this.tbD14.TabIndex = 12;
             this.tbD14.Text = "0";
             // 
@@ -1099,7 +1158,7 @@
             this.tbD13.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD13.Name = "tbD13";
             this.tbD13.ReadOnly = true;
-            this.tbD13.Size = new System.Drawing.Size(32, 32);
+            this.tbD13.Size = new System.Drawing.Size(32, 31);
             this.tbD13.TabIndex = 11;
             this.tbD13.Text = "0";
             // 
@@ -1110,7 +1169,7 @@
             this.tbD12.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD12.Name = "tbD12";
             this.tbD12.ReadOnly = true;
-            this.tbD12.Size = new System.Drawing.Size(32, 32);
+            this.tbD12.Size = new System.Drawing.Size(32, 31);
             this.tbD12.TabIndex = 10;
             this.tbD12.Text = "0";
             // 
@@ -1121,7 +1180,7 @@
             this.tbD11.MinimumSize = new System.Drawing.Size(32, 32);
             this.tbD11.Name = "tbD11";
             this.tbD11.ReadOnly = true;
-            this.tbD11.Size = new System.Drawing.Size(32, 32);
+            this.tbD11.Size = new System.Drawing.Size(32, 31);
             this.tbD11.TabIndex = 9;
             this.tbD11.Text = "0";
             // 
@@ -1289,23 +1348,15 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 12);
             // 
-            // button1
+            // openFileDialog1
             // 
-            this.button1.Location = new System.Drawing.Point(17, 633);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 44);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "Open file";
-            this.button1.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "EMarin key (*.em)|*.em|All files (*.*)|*.*";
             // 
-            // button2
+            // saveFileDialog1
             // 
-            this.button2.Location = new System.Drawing.Point(17, 680);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(300, 44);
-            this.button2.TabIndex = 66;
-            this.button2.Text = "Save file";
-            this.button2.UseVisualStyleBackColor = true;
+            this.saveFileDialog1.FileName = "myKey.em";
+            this.saveFileDialog1.Filter = "EMarin key (*.em)|*.em|All files (*.*)|*.*";
             // 
             // MainFrm
             // 
@@ -1339,6 +1390,7 @@
             this.groupBox3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1446,8 +1498,13 @@
         private System.Windows.Forms.TextBox tbD91;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveEmarin;
+        private System.Windows.Forms.Button btnOpenEmarin;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnValidate;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnWrite4305;
     }
 }
 

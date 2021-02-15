@@ -14,8 +14,6 @@ namespace RFIDReader.Managers
             try
             {
                 _comPortManager = new ComPortManager(portname);
-
-                PingAsync(CancellationToken.None).GetAwaiter().GetResult();
             }
             catch (ApplicationException ex)
             {
@@ -39,6 +37,16 @@ namespace RFIDReader.Managers
             await _comPortManager.SendAsync(new byte[0], 1000, cancellationToken);
         }
 
+        public async Task Login4305Async(CancellationToken cancellationToken)
+        {
+            await _comPortManager.SendAsync(new byte[] { 0x21, 0x00, 0x00, 0x00, 0x00 }, 3000, cancellationToken);
+        }
+
+        public async Task Write4305Async(byte address, byte[] data, CancellationToken cancellationToken)
+        {
+            await _comPortManager.SendAsync(new byte[] { 0x22, address, data[0], data[1], data[2], data[3] }, 3000, cancellationToken);
+        }
+
         public async Task<Emarin> ReadEmarinAsync(CancellationToken cancellationToken)
         {
             int count = 0;
@@ -51,7 +59,7 @@ namespace RFIDReader.Managers
             do
             {
                 await Task.Delay(delay);
-                var newData = await _comPortManager.SendAsync(new byte[1] { 0x20 }, 10000, cancellationToken);
+                var newData = await _comPortManager.SendAsync(new byte[2] { 0x20, 0x40 }, 10000, cancellationToken);
 
                 if (newData[0] == 0xFF && (newData[1] & 0x01) == 0x01)
                 {

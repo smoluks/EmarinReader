@@ -7,7 +7,7 @@ sts UART_TX_HANDLE, CONST_UART_TX_BUFFER
 sts UART_TX_CRC, CONST_START_TOKEN_CRC
 ret
 
-;reseive byte handler
+;receive byte handler
 USART_RXC:
 push r16
 push r17
@@ -92,9 +92,19 @@ pp0:
 lds r16, UART_RX_BUFFER
 cpi r16, 0x20
 brne pp1
- sbr RFIDFLAGS, 1 << RFIDFLAGS_READ_COMMAND
+ sbr RFIDFLAGS, 1 << RFIDFLAGS_READ
  ret
 pp1:
+cpi r16, 0x21
+brne pp2
+ sbr RFIDFLAGS, 1 << RFIDFLAGS_LOGIN_4305
+ ret
+pp2:
+cpi r16, 0x22
+brne pp3
+ sbr RFIDFLAGS, 1 << RFIDFLAGS_WRITE_4305
+ ret
+pp3: 
 ret
 
 USART_UDRE:
@@ -206,6 +216,18 @@ lds r16, RAW_RFID_READ_BUFFER+7
 sts UART_TX_BUFFER+7, r16
 ;
 ldi r16, 8
+sts UART_TX_COUNT, r16
+out UDR, CONST_START_TOKEN
+sbi UCSRB, 5
+;
+ret
+
+;in - r16
+uart_sendbyte:
+sts UART_TX_STATE, CONST_0
+sts UART_TX_BUFFER, r16
+;
+ldi r16, 1
 sts UART_TX_COUNT, r16
 out UDR, CONST_START_TOKEN
 sbi UCSRB, 5

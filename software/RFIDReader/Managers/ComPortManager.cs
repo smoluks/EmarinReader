@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RFIDReader.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace RFIDReader.Managers
 {
     public class ComPortManager : IDisposable
     {
-        const int BAUDRATE = 1000000;
+        const int BAUDRATE = 500000;
         const Parity PARITY = Parity.Odd;
         const int IO_TIMEOUT = 500;
 
@@ -35,7 +36,7 @@ namespace RFIDReader.Managers
             _serialPort.Open();
             _serialPort.DataReceived += DataReceivedHandler;
 
-            if(_serialPort.BaudRate != BAUDRATE)
+            if (_serialPort.BaudRate != BAUDRATE)
             {
                 _serialPort.Close();
                 throw new ApplicationException($"BaudRate {BAUDRATE} doesn't support by this COM port");
@@ -68,8 +69,6 @@ namespace RFIDReader.Managers
 
         internal async Task<byte[]> SendAsync(byte[] buffer, int timeout, CancellationToken token)
         {
-            tcs = new TaskCompletionSource<byte[]>();
-
             var array = new byte[buffer.Count() + 3];
             array[0] = 0xAB;
             array[1] = (byte)buffer.Count();
@@ -81,10 +80,12 @@ namespace RFIDReader.Managers
             //send packet
             _serialPort.Write(array, 0, buffer.Count() + 3);
 
+            var task = WaitAnswerAsync();
+
             //receive packet
-            if (await Task.WhenAny(tcs.Task, Task.Delay(timeout)) == tcs.Task)
+            if (await Task.WhenAny(task, Task.Delay(timeout), token.AsTask()) == task)
             {
-                var result = tcs.Task.Result;
+                var result = await task;
                 tcs = null;
                 return result;
             }
@@ -92,6 +93,12 @@ namespace RFIDReader.Managers
             {
                 throw new ApplicationException("Packet timeout");
             }
+        }
+
+        private Task<byte[]> WaitAnswerAsync()
+        {
+            tcs = new TaskCompletionSource<byte[]>();
+            return tcs.Task;
         }
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -147,7 +154,8 @@ namespace RFIDReader.Managers
                 if (tcs != null)
                 {
                     tcs.SetResult(data);
-                }else
+                }
+                else
                 {
                     //custom packets
                 }

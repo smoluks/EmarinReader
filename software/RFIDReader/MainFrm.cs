@@ -3,6 +3,9 @@ using RFIDReader.Entity;
 using RFIDReader.Managers;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -11,6 +14,9 @@ namespace RFIDReader
     public partial class MainFrm : Form
     {
         CommandManager _commandManager;
+        private Emarin _emarinKey;
+        CancellationTokenSource _formCancellationTokenSource;
+        CancellationToken _formCancellationToken;
 
         public MainFrm()
         {
@@ -19,10 +25,16 @@ namespace RFIDReader
 
         private void MainFrm_Load(object sender, System.EventArgs e)
         {
+            _formCancellationTokenSource = new CancellationTokenSource();
+            _formCancellationToken = _formCancellationTokenSource.Token;
+
             RefreshComPorts();
         }
+
         private void MainFrm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            _formCancellationTokenSource.Cancel();
+
             _commandManager?.Dispose();
         }
 
@@ -44,13 +56,15 @@ namespace RFIDReader
                 cbComPort.SelectedIndex = cbComPort.Items.Count - 1;
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private async void btnConnect_Click(object sender, EventArgs e)
         {
             lblStatus.Text = $"Connecting to {(string)cbComPort.SelectedItem}...";
 
             try
             {
                 _commandManager = new CommandManager((string)cbComPort.SelectedItem);
+
+                await _commandManager.PingAsync(CancellationToken.None);
 
                 tabControl1.Enabled = true;
                 btnDisconnect.Enabled = true;
@@ -81,19 +95,101 @@ namespace RFIDReader
 
             try
             {
-                var key = await _commandManager.ReadEmarinAsync(CancellationToken.None);
+                _emarinKey = await _commandManager.ReadEmarinAsync(_formCancellationToken);
 
                 tbH1.Invoke(new Action(
                     () =>
                     {
-                        ShowEmarin(key);
+                        ShowEmarin(_emarinKey);
                     }));
 
                 lblStatus.Text = $"Read Emarin done";
+                btnValidate.Enabled = true;
             }
             catch (Exception ex)
             {
                 lblStatus.Text = $"Read Emarin error: {ex.Message}";
+            }
+        }
+
+        private async void btnValidate_ClickAsync(object sender, EventArgs e)
+        {
+            lblStatus.Text = $"Validating Emarin...";
+
+            try
+            {
+                var key = await _commandManager.ReadEmarinAsync(_formCancellationToken);
+
+                if (_emarinKey.CompareTo(key))
+                {
+                    lblStatus.Text = $"Validation OK";
+                }
+                else
+                {
+                    lblStatus.Text = $"Validation failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = $"Validating Emarin error: {ex.Message}";
+            }
+        }
+
+
+        private async void btnWrite4305_ClickAsync(object sender, EventArgs e)
+        {
+            lblStatus.Text = $"Writing EM4305...";
+
+            try
+            {
+                await _commandManager.Login4305Async(_formCancellationToken);
+
+                await _commandManager.Write4305Async(4, new byte[] { 0x5F, 0x80, 0x01, 0x00 }, _formCancellationToken);
+
+                var raw = _emarinKey.ToByteArray();
+
+                await _commandManager.Write4305Async(5, new byte[] { raw[0], raw[1], raw[2], raw[3] }, _formCancellationToken);
+                await _commandManager.Write4305Async(6, new byte[] { raw[4], raw[5], raw[6], raw[7] }, _formCancellationToken);
+
+                var key = await _commandManager.ReadEmarinAsync(_formCancellationToken);
+
+                if (_emarinKey.CompareTo(key))
+                {
+                    lblStatus.Text = $"Validation OK";
+                }
+                else
+                {
+                    lblStatus.Text = $"Validation failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = $"Writing EM4305 error: {ex.Message}";
+            }
+        }
+
+        private void btnOpenEmarin_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                _emarinKey = (Emarin)formatter.Deserialize(stream);
+                stream.Close();
+
+                ShowEmarin(_emarinKey);
+                btnValidate.Enabled = true;
+            }
+        }
+
+        private void btnSaveEmarin_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                IFormatter formatter = new BinaryFormatter();
+                var stream = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, _emarinKey);
+                stream.Close();
             }
         }
 

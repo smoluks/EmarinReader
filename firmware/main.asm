@@ -27,7 +27,7 @@ out SPL,r16
 ;const
 #include "rammapping.asm"
 ;GPIO
-ldi r16, 0b00000110;
+ldi r16, 0b00000000;
 out ddrb, r16
 ldi r16, 0b00000110;
 out portb, r16
@@ -40,9 +40,11 @@ out ddrd, r16
 ldi r16, 0b00000011;
 out portd, r16
 ;----- T0 - 125 KHz data strobe for manchester-----
-ldi r16, 0b00000011 ;/64
-out TCCR0, r16
+;ldi r16, 0b00000011 ;/64
+;out TCCR0, r16
 out TCNT0, CONST_0
+ldi r16, 0b00000001
+out TIMSK, r16
 ;----- T1 250kHz / toggle carrier generator -----
 out TCNT1H, CONST_0
 out TCNT1L, CONST_0
@@ -62,9 +64,9 @@ out TCCR1B, r16
 ;----- T2 - 1us systick -----
 ldi r16, 0b00000010
 out TCCR2, r16 ;start t2
-;----- UART 19200 ODD -----
-ldi r16, 0b00000010
-out UCSRA, r16
+;----- UART 500000 ODD -----
+;ldi r16, 0b00000010
+out UCSRA, CONST_0
 ldi r16, 0b10011000
 out UCSRB, r16
 ldi r16, 0b10110110
@@ -75,11 +77,11 @@ out UBRRL, CONST_0
 ldi r16, END_RAM
 out UDR, r16
 ;----- Comp -----
-ldi r16, 0b00010000
+ldi r16, 0b00011000
 out ACSR, r16
 out SFIOR, CONST_0
 ;
-rcall rfid_init
+;rcall rfid_init
 rcall uart_init
 ;
 rcall delayhalfsec
@@ -117,65 +119,25 @@ l1:
  ;rcall delayhalfsec
  ;rcall delayhalfsec
  ;rjmp l1
-;-----rfid wrire-----
-l3:
-;lds r16, RFID_COMMANDS
-;cpi r16, RFID_COMMANDS_WRITE5577
-;brne l4
-  ;--write-- 
-  ;cli
-  ;
-  ;rcall rf5577_write
-  ;
-  ;ldi r16, 0xBD
-  ;sts UDR0, r16
-  ;
-  ;sts RFID_COMMANDS, CONST_0
-  ;cbr RFIDFLAGS, 1 << RFIDFLAGS_READ_ENABLE
-  ;beep
-  ;rcall beep
-  ;
-  ;rcall delayhalfsec
-  ;rcall delayhalfsec
-  ;
-  ;sei
-  ;rjmp l1
-;--rfid read--
-sbrc RFIDFLAGS, RFIDFLAGS_READ_COMMAND
-rcall read_rfid
-;--rfid send--
+;-----rfid-----
 sbrc RFIDFLAGS, RFIDFLAGS_DATA_READY
-rcall send_rfid
+ rcall send_rfid
+sbrc RFIDFLAGS, RFIDFLAGS_READ
+ rcall rfid_read
+sbrc RFIDFLAGS, RFIDFLAGS_LOGIN_4305
+ rcall Login_4305
+sbrc RFIDFLAGS, RFIDFLAGS_WRITE_4305
+ rcall Write_4305
 ;
-rcall strobe
 rjmp l1
-
-read_rfid:
-cbr RFIDFLAGS, 1 << RFIDFLAGS_READ_COMMAND
-sbi portc, 4
-;
-ldi r16, 0b00011000
-out ACSR, r16
-out DDRB, CONST_DDRB_COILON
-ret
 
 send_rfid:
 cbr RFIDFLAGS, 1 << RFIDFLAGS_DATA_READY
 cbi portc, 4
 ;
 rcall uart_sendemarin
-rcall beep
+;rcall beep
 ret
-
-strobe:
-in r16, ACSR
-sbrs r16, 5
-rjmp strobe1
- cbi portc, 3
- ret
-strobe1:
- sbi portc, 3
- ret
 
 beep:
 sbi portd, 3
@@ -230,6 +192,7 @@ pop r18
 ret
 
 #include "rfid_read.asm"
+#include "rfid4305.asm"
 ;#include "1wire.asm"
 #include "uart.asm"
 ;#include "RFID_5577.asm"
